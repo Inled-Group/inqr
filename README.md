@@ -13,5 +13,5 @@ Por que si tuviéramos que iniciar sesión cada vez que queremos hacer algo esta
 La privacidad es importante, por lo que inQR no te pide registro **ni espía lo que haces**
 
 ## ¿Puedo usarlo ahora?
-Claro que sí: entra en [qr.inled.es](https://qr.inled.es) y disfruta.  
+Claro que sí: entra en [inqr.inled.es](https://inqr.inled.es) y disfruta.  
 Si detectas algún error déjanoslo en **issues** y lo intentaremos resolver cuanto antes.
