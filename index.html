@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>InQR | Genera QR gratis y privado</title>
+    <meta name="description" content="Generador de códigos QR y códigos de barras moderno y fácil de usar" />
+    <meta name="author" content="Inled Group" />
+    <link rel="stylesheet" href="estilos.css"/>
+
+    <script src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/js/all.min.js"></script>
+  </head>
+
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <div class="header">
+
+          <img src="inqr.png" class="qr-icon" alt="INQR logo" />
+
+        <h1 class="main-title">InQR</h1>
+        <p class="subtitle">Genera códigos QR</p>
+      </div>
+
+      <div class="grid">
+        <!-- Input Section -->
+        <div class="card">
+          <h2 class="card-title">Crear código</h2>
+          
+          <!-- Type Selector -->
+          <div class="type-selector">
+            <div class="type-tabs">
+              <div class="type-tab active" data-type="text">
+                <div><i class="fa-solid fa-link"></i> <br>Texto/URL</div>
+              </div>
+              <div class="type-tab" data-type="wifi">
+                <div><i class="fa-solid fa-wifi"></i><br> Acceso WiFi</div>
+              </div>
+              <div class="type-tab" data-type="barcode">
+                <div><i class="fa-solid fa-barcode"></i><br>Código de Barras</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Text/URL Form -->
+          <div class="text-form active" id="textForm">
+            <div class="input-container">
+              <input
+                type="text"
+                class="text-input"
+                id="textInput"
+                placeholder="Escribe aquí tu texto, URL, número de teléfono... "
+              />
+              <button class="copy-btn" id="copyBtn">
+                <svg class="copy-icon" id="copyIcon" viewBox="0 0 24 24">
+                  <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                </svg>
+                <svg class="check-icon hidden" id="checkIcon" viewBox="0 0 24 24">
+                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- WiFi Form -->
+          <div class="wifi-form" id="wifiForm">
+            <div class="form-group">
+              <label for="wifiSSID">Nombre de la red (SSID):</label>
+              <input type="text" class="text-input" id="wifiSSID" placeholder="Wifi_My" />
+            </div>
+            <div class="form-group">
+              <label for="wifiPassword">Contraseña:</label>
+              <input type="password" class="text-input" id="wifiPassword" placeholder="wifi2524" />
+            </div>
+            <div class="form-group">
+              <label for="wifiSecurity">Tipo de seguridad:</label>
+              <select class="select-input" id="wifiSecurity">
+                <option value="WPA">WPA/WPA2</option>
+                <option value="WEP">WEP</option>
+                <option value="nopass">Sin contraseña</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>
+                <input type="checkbox" id="wifiHidden"> Red oculta
+              </label>
+            </div>
+          </div>
+
+          <!-- Barcode Form -->
+          <div class="barcode-form" id="barcodeForm">
+            <div class="form-group">
+              <label for="barcodeText">Contenido del código de barras:</label>
+              <input type="text" class="text-input" id="barcodeText" placeholder="Escribe aquí el contenido del código" />
+            </div>
+            <div class="form-group">
+              <label for="barcodeType">Tipo de código de barras:</label>
+              <select class="select-input" id="barcodeType">
+                <option value="code128">CODE 128</option>
+                <!--<option value="ean13">EAN-13</option>
+                <option value="ean8">EAN-8</option>
+                <option value="upc">UPC-A</option>-->
+              </select>
+            </div>
+          </div>
+
+          <button class="generate-btn" id="generateBtn">
+            <i class="fa-solid fa-qrcode"></i>
+            <span id="generateText">Generar Código</span>
+          </button>
+
+          <!-- Tips -->
+          <div class="tips">
+            <h3><i class="fa-regular fa-lightbulb"></i> Consejos:</h3>
+            <ul id="tipsList">
+              <li>• Puedes usar URLs, texto, números de teléfono</li>
+              <li>• El código se puede descargar como imagen PNG</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- QR Display Section -->
+        <div class="card">
+          <h2 class="card-title" id="resultTitle">Tu Código</h2>
+          
+          <div class="qr-display">
+            <!-- Placeholder -->
+            <div class="placeholder" id="placeholder">
+              <div class="placeholder-icon">
+                <svg class="placeholder-qr" viewBox="0 0 24 24">
+                  <path d="M3 11V3h8v8H3zm2-6v4h4V5H5zm8-2v8h8V3h-8zm6 6h-4V5h4v4zM3 21v-8h8v8H3zm2-6v4h4v-4H5zm10 2h2v2h-2v-2zm0 2h2v2h-2v-2zm-2-2h2v2h-2v-2zm4 0h2v2h-2v-2zm0-4h2v2h-2v-2zm2 0h2v2h-2v-2z"/>
+                </svg>
+              </div>
+              <h3>No hay código aún</h3>
+              <p>Selecciona un tipo y genera tu código</p>
+            </div>
+
+            <!-- Result -->
+            <div class="hidden" id="codeResult">
+              <div class="qr-container">
+                <img class="qr-image" id="codeImage" alt="Código generado" />
+              </div>
+              
+              <button class="download-btn" id="downloadBtn">
+                <svg class="download-icon" viewBox="0 0 24 24">
+                  <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                </svg>
+                <span id="downloadText">Descargar Código</span>
+              </button>
+
+              <div class="encoded-text">
+                <p>Datos codificados:</p>
+                <div class="encoded-text-content" id="encodedText"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer">
+        <p>Genera códigos QR gratuitamente · No recopilamos tus datos</p>
+      </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+      <p id="toastMessage"></p>
+    </div>
+
+  </body>
+  <script src="funcionalidad.js"></script>
+</html>
