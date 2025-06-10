@@ -58,7 +58,7 @@
         
         setTimeout(() => {
           toast.classList.remove('show');
-        }, 3000);
+        }, 9000);
       }
 
       // Update tips
