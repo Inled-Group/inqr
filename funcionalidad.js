@@ -206,7 +206,7 @@
           img.src = codeUrl;
           
         } catch (error) {
-          showToast('No se pudo generar el código. Inténtalo de nuevo.', 'error');
+          showToast('Error al descargar. Haz clic derecho en el código y pulsa en Guardar imagen como...', 'error');
         } finally {
           // Reset button state
           generateBtn.disabled = false;
@@ -236,7 +236,7 @@
           window.URL.revokeObjectURL(url);
           showToast('El código se ha descargado correctamente');
         } catch (error) {
-          showToast('No se pudo descargar el código', 'error');
+          showToast('Vaya, ha fallado la descarga. Haz clic derecho en el código y pulsa en Guardar imagen como...', 'error');
         }
       }
 
